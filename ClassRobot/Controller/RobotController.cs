@@ -73,17 +73,16 @@ namespace ClassRobot.Controller
         {
             Dictionary<string, object> tmpDict = new Dictionary<string, object>();
             
-                foreach (DataGridViewRow row in dgv_class.Rows)
+            foreach (DataGridViewRow row in dgv_class.Rows)
+            {
+                //if dictionary contains items, student has been found. Break out of loop
+                if (tmpDict.Count == 0)
                 {
-                    if (tmpDict.Count != 0)
-                    {
-                        break;
-                    }
-
                     foreach (DataGridViewCell cell in row.Cells)
                     {
                         if (cell.Value != null && cell.Value.ToString().ToUpper() == studentName.ToUpper())
                         {
+                            //returns the location and name of the student
                             tmpDict.Add("name", cell.Value);
                             tmpDict.Add("horizontal", cell.ColumnIndex);
                             tmpDict.Add("vertical", cell.RowIndex);
@@ -92,7 +91,28 @@ namespace ClassRobot.Controller
                         }
                     }
                 }
+                else
+                {
+                    break;
+                }
+            }
             return tmpDict;
+        }
+
+        public static DataGridView ClearAllStudents(DataGridView dgv_class)
+        {
+            foreach (DataGridViewRow row in dgv_class.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (cell.Value is string && cell.RowIndex > 1)
+                    {
+                        cell.Value = "";
+                    }
+                }
+            }
+
+            return dgv_class;
         }
     }
 }

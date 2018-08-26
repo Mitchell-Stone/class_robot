@@ -134,15 +134,12 @@ namespace ClassRobot
 
         private void btn_clear_Click(object sender, EventArgs e)
         {
-            try
+            //confirm that they would like to clear all students
+            if (MessageBox.Show("Are you sure you want to clear all student names?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }           
+                //update the datagridview so all student names are removed
+                dgv_class = RobotController.ClearAllStudents(dgv_class);
+            }              
         }
 
         private void btn_find_Click(object sender, EventArgs e)
@@ -152,7 +149,6 @@ namespace ClassRobot
                 Dictionary<string, object> studentDetails = RobotController.FindStudent(dgv_class, tb_search.Text);
                 dgv_class.CurrentCell = dgv_class.Rows[Convert.ToInt32(studentDetails["vertical"])]
                     .Cells[Convert.ToInt32(studentDetails["horizontal"])];
-
             }
             catch (Exception)
             {
