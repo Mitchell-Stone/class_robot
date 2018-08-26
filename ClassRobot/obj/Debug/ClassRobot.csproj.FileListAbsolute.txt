@@ -1,0 +1,12 @@
+C:\Users\0111005906\source\repos\ClassRobot\ClassRobot\bin\Debug\ClassRobot.exe.config
+C:\Users\0111005906\source\repos\ClassRobot\ClassRobot\bin\Debug\ClassRobot.exe
+C:\Users\0111005906\source\repos\ClassRobot\ClassRobot\bin\Debug\ClassRobot.pdb
+C:\Users\0111005906\source\repos\ClassRobot\ClassRobot\bin\Debug\Newtonsoft.Json.dll
+C:\Users\0111005906\source\repos\ClassRobot\ClassRobot\bin\Debug\Newtonsoft.Json.xml
+C:\Users\0111005906\source\repos\ClassRobot\ClassRobot\obj\Debug\ClassRobot.csprojResolveAssemblyReference.cache
+C:\Users\0111005906\source\repos\ClassRobot\ClassRobot\obj\Debug\ClassRobot.Form1.resources
+C:\Users\0111005906\source\repos\ClassRobot\ClassRobot\obj\Debug\ClassRobot.Properties.Resources.resources
+C:\Users\0111005906\source\repos\ClassRobot\ClassRobot\obj\Debug\ClassRobot.csproj.GenerateResource.Cache
+C:\Users\0111005906\source\repos\ClassRobot\ClassRobot\obj\Debug\ClassRobot.csproj.CoreCompileInputs.cache
+C:\Users\0111005906\source\repos\ClassRobot\ClassRobot\obj\Debug\ClassRobot.exe
+C:\Users\0111005906\source\repos\ClassRobot\ClassRobot\obj\Debug\ClassRobot.pdb
