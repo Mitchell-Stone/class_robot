@@ -68,5 +68,31 @@ namespace ClassRobot.Controller
             //save the changes to file
             Json.SerializeToFile(root);
         }
+
+        public static Dictionary<string, object> FindStudent(DataGridView dgv_class, string studentName)
+        {
+            Dictionary<string, object> tmpDict = new Dictionary<string, object>();
+            
+                foreach (DataGridViewRow row in dgv_class.Rows)
+                {
+                    if (tmpDict.Count != 0)
+                    {
+                        break;
+                    }
+
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        if (cell.Value != null && cell.Value.ToString().ToUpper() == studentName.ToUpper())
+                        {
+                            tmpDict.Add("name", cell.Value);
+                            tmpDict.Add("horizontal", cell.ColumnIndex);
+                            tmpDict.Add("vertical", cell.RowIndex);
+
+                            break;
+                        }
+                    }
+                }
+            return tmpDict;
+        }
     }
 }

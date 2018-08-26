@@ -131,5 +131,34 @@ namespace ClassRobot
         {
             dgv_class.Rows[rowIndex].Cells[columnIndex].Style.BackColor = Color.White;
         }
+
+        private void btn_clear_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }           
+        }
+
+        private void btn_find_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Dictionary<string, object> studentDetails = RobotController.FindStudent(dgv_class, tb_search.Text);
+                dgv_class.CurrentCell = dgv_class.Rows[Convert.ToInt32(studentDetails["vertical"])]
+                    .Cells[Convert.ToInt32(studentDetails["horizontal"])];
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("There is no student with that name, please try again.", "Warning",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }
