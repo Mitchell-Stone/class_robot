@@ -7,13 +7,6 @@ namespace ClassRobot.Model
     [Serializable]
     public class RootObject
     {
-        [JsonProperty("all_classes")]
-        public List<Classes> classes { get; set; }
-    }
-
-    [Serializable]
-    public class Classes
-    {
         [JsonProperty("teacher")]
         public string Teacher { get; set; }
         [JsonProperty("class")]
@@ -44,8 +37,6 @@ namespace ClassRobot.Model
             //changes the input to upper case and compares the current friend to the friend entered.
             return this.CellData.ToUpper().CompareTo(other.CellData.ToUpper());
         }
-    }
-
-   
+    } 
 }
 
