@@ -27,7 +27,7 @@ namespace ClassRobot.Model
     }
 
     [Serializable]
-    public class Layout
+    public class Layout : IComparable<Layout>
     {
         [JsonProperty("horizontal")]
         public int Horizontal { get; set; }
@@ -37,6 +37,15 @@ namespace ClassRobot.Model
         public string CellData { get; set; }
         [JsonProperty("colour")]
         public string Colour { get; set; }
+
+        //this is used with IComparable to sort an array containing layout objects
+        public int CompareTo(Layout other)
+        {
+            //changes the input to upper case and compares the current friend to the friend entered.
+            return this.CellData.ToUpper().CompareTo(other.CellData.ToUpper());
+        }
     }
+
+   
 }
 

@@ -104,32 +104,50 @@ namespace ClassRobot
                 rowIndex = dgv_class.HitTest(e.X, e.Y).RowIndex;
                 columnIndex = dgv_class.HitTest(e.X, e.Y).ColumnIndex;
                 dgv_class.CurrentCell = dgv_class.Rows[rowIndex].Cells[columnIndex];
-                //var color = dgv_class.Rows[rowIndex].Cells[columnIndex].Style.BackColor;
 
                 ContextMenu m = new ContextMenu();
 
+                MenuItem editCell = new MenuItem("Edit Cell");
+                MenuItem clearCell = new MenuItem("Clear Cell");
                 MenuItem addDesk = new MenuItem("Set as Desk");
                 MenuItem removeDesk = new MenuItem("Unset Desk");
 
+                m.MenuItems.Add(editCell);
+                m.MenuItems.Add(clearCell);
                 m.MenuItems.Add(addDesk);
                 m.MenuItems.Add(removeDesk);
 
+                editCell.Click += EditCell_Click;
+                clearCell.Click += ClearCell_Click;
                 addDesk.Click += AddDesk_Click;
                 removeDesk.Click += RemoveDesk_Click;
-
+                
                 m.Show(dgv_class, new Point(e.X, e.Y));               
             }
         }
 
         private void AddDesk_Click(object sender, EventArgs e)
         {
+            //adds the color to the cell
             dgv_class.Rows[rowIndex].Cells[columnIndex].Style.BackColor = Color.LightBlue;
             dgv_class.Rows[rowIndex].Cells[columnIndex].Value = null;
         }
 
         private void RemoveDesk_Click(object sender, EventArgs e)
         {
+            //removes the colour from the cell
             dgv_class.Rows[rowIndex].Cells[columnIndex].Style.BackColor = Color.White;
+            dgv_class.Rows[rowIndex].Cells[columnIndex].Value = null;
+        }
+
+        private void ClearCell_Click(object sender, EventArgs e)
+        {
+            dgv_class.Rows[rowIndex].Cells[columnIndex].Value = "";
+        }
+
+        private void EditCell_Click(object sender, EventArgs e)
+        {
+            dgv_class.BeginEdit(true);
         }
 
         private void btn_clear_Click(object sender, EventArgs e)
@@ -146,15 +164,29 @@ namespace ClassRobot
         {
             try
             {
-                Dictionary<string, object> studentDetails = RobotController.FindStudent(dgv_class, tb_search.Text);
-                dgv_class.CurrentCell = dgv_class.Rows[Convert.ToInt32(studentDetails["vertical"])]
-                    .Cells[Convert.ToInt32(studentDetails["horizontal"])];
+                //create a dictionary that will contain the location of the student searched for
+                Layout studentDetails = RobotController.FindStudent(root, tb_search.Text);
+                dgv_class.CurrentCell = dgv_class.Rows[studentDetails.Vertical].Cells[studentDetails.Horizontal];
             }
-            catch (Exception)
+            catch (NullReferenceException)
             {
-                MessageBox.Show("There is no student with that name, please try again.", "Warning",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (string.IsNullOrWhiteSpace(tb_search.Text))
+                {
+                    MessageBox.Show("Please enter a student name.", "Warning",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    //name has to match and if not show message
+                    MessageBox.Show("There is no student with that name, please try again.", "Warning",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
+        }
+
+        private void dgv_class_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            
         }
     }
 }

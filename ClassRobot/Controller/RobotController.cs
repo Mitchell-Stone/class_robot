@@ -69,34 +69,35 @@ namespace ClassRobot.Controller
             Json.SerializeToFile(root);
         }
 
-        public static Dictionary<string, object> FindStudent(DataGridView dgv_class, string studentName)
+        public static Layout FindStudent(RootObject root, string cellData)
         {
-            Dictionary<string, object> tmpDict = new Dictionary<string, object>();
+            List<Layout> layouts = new List<Layout>();
             
-            foreach (DataGridViewRow row in dgv_class.Rows)
+            //add all the cell data to the layout list
+            foreach (var allClasses in root.classes)
             {
-                //if dictionary contains items, student has been found. Break out of loop
-                if (tmpDict.Count == 0)
+                foreach (var layout in allClasses.Layout)
                 {
-                    foreach (DataGridViewCell cell in row.Cells)
-                    {
-                        if (cell.Value != null && cell.Value.ToString().ToUpper() == studentName.ToUpper())
-                        {
-                            //returns the location and name of the student
-                            tmpDict.Add("name", cell.Value);
-                            tmpDict.Add("horizontal", cell.ColumnIndex);
-                            tmpDict.Add("vertical", cell.RowIndex);
-
-                            break;
-                        }
-                    }
-                }
-                else
-                {
-                    break;
+                    layouts.Add(layout);
                 }
             }
-            return tmpDict;
+            
+            //sort the array in the order of the cell data
+            Layout[] sortedArray = layouts.OrderBy(x => x.CellData).ToArray();
+
+            //conducst the binary search to find the location of the student
+            int index = Array.BinarySearch(sortedArray, new Layout() { CellData = cellData });
+
+            //if the student exists in the layout, index will be a positive int
+            if (index >= 0)
+            {
+                //the int returned from the search is the location of where the student is in the sorted list
+                return sortedArray[index];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public static DataGridView ClearAllStudents(DataGridView dgv_class)
@@ -107,7 +108,7 @@ namespace ClassRobot.Controller
                 {
                     if (cell.Value is string && cell.RowIndex > 1)
                     {
-                        cell.Value = "";
+                        cell.Value = null;
                     }
                 }
             }
