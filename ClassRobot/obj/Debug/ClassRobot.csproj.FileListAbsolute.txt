@@ -11,3 +11,16 @@ C:\Users\0111005906\source\repos\ClassRobot\ClassRobot\obj\Debug\ClassRobot.exe
 C:\Users\0111005906\source\repos\ClassRobot\ClassRobot\obj\Debug\ClassRobot.pdb
 C:\Users\0111005906\source\repos\ClassRobot\ClassRobot\obj\Debug\ClassRobot.MainWindow.resources
 C:\Users\0111005906\source\repos\ClassRobot\ClassRobot\obj\Debug\ClassRobot.StudentList.resources
+D:\class_robot\ClassRobot\obj\Debug\ClassRobot.MainWindow.resources
+D:\class_robot\ClassRobot\obj\Debug\ClassRobot.Properties.Resources.resources
+D:\class_robot\ClassRobot\obj\Debug\ClassRobot.StudentList.resources
+D:\class_robot\ClassRobot\obj\Debug\ClassRobot.csproj.GenerateResource.Cache
+D:\class_robot\ClassRobot\obj\Debug\ClassRobot.csproj.CoreCompileInputs.cache
+D:\class_robot\ClassRobot\bin\Debug\ClassRobot.exe.config
+D:\class_robot\ClassRobot\bin\Debug\ClassRobot.exe
+D:\class_robot\ClassRobot\bin\Debug\ClassRobot.pdb
+D:\class_robot\ClassRobot\bin\Debug\Newtonsoft.Json.dll
+D:\class_robot\ClassRobot\bin\Debug\Newtonsoft.Json.xml
+D:\class_robot\ClassRobot\obj\Debug\ClassRobot.csprojResolveAssemblyReference.cache
+D:\class_robot\ClassRobot\obj\Debug\ClassRobot.exe
+D:\class_robot\ClassRobot\obj\Debug\ClassRobot.pdb

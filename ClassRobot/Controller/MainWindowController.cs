@@ -1,4 +1,12 @@
-﻿using ClassRobot.Model;
+﻿/*
+ *      Student Number: 451381461
+ *      Name:           Mitchell Stone
+ *      Date:           03/09/2018
+ *      Purpose:        The controller for the main window that executes all the functions needed to collate the data
+ *      Known Bugs:     nill
+ */
+
+using ClassRobot.Model;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -11,21 +19,25 @@ namespace ClassRobot.Controller
     {
         public static RootObject AccessDatabase()
         {
+            //deserializes the json infomation
             return Json.DeserializeFromFile();
         }
 
         public static RootObject AccessDatabase(string fileName)
         {
+            //deserializes the json infomation in a location
             return Json.DeserializeFromFile(fileName);
         }
 
         public static int GetHorizontalCount(List<Layout> layout)
         {
+            //looks for the highest horizontal value and adds 1 to make room
             return layout.Max(x => x.Horizontal) + 1;
         }
 
         public static int GetVerticalCount(List<Layout> layout)
         {
+            //looks for the highest vertical value and adds 2 to make room
             return layout.Max(x => x.Vertical) + 2;
         }
 
@@ -86,7 +98,9 @@ namespace ClassRobot.Controller
             Layout[] sortedArray = layouts.OrderBy(x => x.CellData).ToArray();
 
             //conducst the binary search to find the location of the student
-            int index = Array.BinarySearch(sortedArray, new Layout() { CellData = cellData });
+            Layout search = new Layout() { CellData = cellData };
+
+            int index = Array.BinarySearch(sortedArray, search);
 
             //if the student exists in the layout, index will be a positive int
             if (index >= 0)
@@ -102,6 +116,7 @@ namespace ClassRobot.Controller
 
         public static DataGridView ClearAllStudents(DataGridView dgv_class)
         {
+            //goes over each cell and removes the student information
             foreach (DataGridViewRow row in dgv_class.Rows)
             {
                 foreach (DataGridViewCell cell in row.Cells)

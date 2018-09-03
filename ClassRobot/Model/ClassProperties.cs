@@ -32,13 +32,21 @@ namespace ClassRobot.Model
         public bool Colour { get; set; }
 
         //used for RAF
+        [JsonProperty("record_size")]
         public int RecSize { get; set; } = 30;
 
         //this is used with IComparable to sort an array containing layout objects
         public int CompareTo(Layout other)
         {
             //changes the input to upper case and compares the current friend to the friend entered.
-            return this.CellData.ToUpper().CompareTo(other.CellData.ToUpper());
+            if (CellData != null)
+            {
+                return this.CellData.ToUpper().CompareTo(other.CellData.ToUpper());
+            }
+            else
+            {
+                return -1;
+            }
         }
     } 
 }

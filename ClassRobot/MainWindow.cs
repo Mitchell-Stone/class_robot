@@ -1,4 +1,12 @@
-﻿using ClassRobot.Controller;
+﻿/*
+ *      Student Number: 451381461
+ *      Name:           Mitchell Stone
+ *      Date:           03/09/2018
+ *      Purpose:        Logic for displaying the data in the main window
+ *      Known Bugs:     The RAF button does not highlight the student in the student list window (work around = search by student name first)
+ */
+
+using ClassRobot.Controller;
 using ClassRobot.Model;
 using System;
 using System.Collections.Generic;
@@ -26,10 +34,13 @@ namespace ClassRobot
 
         private void BuildClassTable()
         {
+            //sets the column count to zero so when reloaded it does not add to existing columns
             dgv_class.ColumnCount = 0;
+            //get the row and column count from the json
             int columnCount = MainWindowController.GetHorizontalCount(root.Layout);
             int rowCount = MainWindowController.GetVerticalCount(root.Layout);
 
+            //set the datagrid view settings
             dgv_class.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv_class.ScrollBars = ScrollBars.None;
             dgv_class.RowTemplate.Height = (dgv_class.Height - dgv_class.ColumnHeadersHeight) / rowCount;
@@ -38,25 +49,31 @@ namespace ClassRobot
             dgv_class.AllowUserToResizeColumns = false;
             dgv_class.AllowUserToResizeRows = false;
 
+            //add the columns to the view
             for (int i = 0; i < columnCount + 1; i++)
             {
                 dgv_class.Columns.Add(i.ToString(), i.ToString());
             }
 
+            //add the rows to the view
             dgv_class.Rows.Add(rowCount);
 
             for (int i = 0; i < dgv_class.Rows.Count; i++)
             {
+                //numbers the row headers
                 dgv_class.Rows[i].HeaderCell.Value = i.ToString();
             }
 
+            //put the information into the data grid view
             PopulateView(root.Layout);
 
+            //make it so the columns can not be sorted
             foreach (DataGridViewColumn dgvc in dgv_class.Columns)
             {
                 dgvc.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
 
+            //fill the text boxes with relevant information
             tb_teacherName.Text = root.Teacher;
             tb_classId.Text = root.ClassId;
             tb_roomId.Text = root.Room;
@@ -71,10 +88,12 @@ namespace ClassRobot
 
                 if (grid.Colour != true)
                 {
+                    //sets the value of the cell to the data the was entered
                     row.Cells[grid.Horizontal.ToString()].Value = grid.CellData;
                 }
                 else
                 {
+                    //sets the colour of the cell to indicate a desk
                     row.Cells[grid.Horizontal.ToString()].Style.BackColor = Color.LightBlue;
                 }               
             }
@@ -87,6 +106,7 @@ namespace ClassRobot
 
         private void btn_save_Click(object sender, EventArgs e)
         {
+            //collects the information on the screen and sends it to the main controller
             root.Teacher = tb_teacherName.Text;
             root.ClassId = tb_classId.Text;
             root.Room = tb_roomId.Text;
@@ -99,10 +119,12 @@ namespace ClassRobot
         {
             if (e.Button == MouseButtons.Right)
             {
+                //hihglight the current cell
                 rowIndex = dgv_class.HitTest(e.X, e.Y).RowIndex;
                 columnIndex = dgv_class.HitTest(e.X, e.Y).ColumnIndex;
                 dgv_class.CurrentCell = dgv_class.Rows[rowIndex].Cells[columnIndex];
 
+                //create the context menu
                 ContextMenu m = new ContextMenu();
 
                 MenuItem editCell = new MenuItem("Edit Cell");
@@ -115,6 +137,7 @@ namespace ClassRobot
                 m.MenuItems.Add(addDesk);
                 m.MenuItems.Add(removeDesk);
 
+                //reference the selection events
                 editCell.Click += EditCell_Click;
                 clearCell.Click += ClearCell_Click;
                 addDesk.Click += AddDesk_Click;
@@ -140,11 +163,13 @@ namespace ClassRobot
 
         private void ClearCell_Click(object sender, EventArgs e)
         {
+            //clears the cell of any text
             dgv_class.Rows[rowIndex].Cells[columnIndex].Value = null;
         }
 
         private void EditCell_Click(object sender, EventArgs e)
         {
+            //changes the state of the cell to edit
             dgv_class.BeginEdit(true);
         }
 
@@ -166,7 +191,7 @@ namespace ClassRobot
                 student = MainWindowController.FindStudent(root, tb_search.Text);
                 dgv_class.CurrentCell = dgv_class.Rows[student.Vertical].Cells[student.Horizontal];
 
-                UpdateStudentList();
+                UpdateStudentList(tb_search.Text);
             }
             catch (NullReferenceException)
             {
@@ -184,31 +209,27 @@ namespace ClassRobot
             }
         }
 
-        private void dgv_class_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            //thinking about making it enter edit mode when a cell is selected
-        }
-
         private void btn_sort_Click(object sender, EventArgs e)
         {
-            UpdateStudentList();
+            //opens the student list window
+            UpdateStudentList(tb_teacherName.Text);
         }
 
-        private void UpdateStudentList()
+        private void UpdateStudentList(string studentName)
         {
             //checks to see if the student list form is open
             if (Application.OpenForms.OfType<StudentList>().Count() == 1)
             {
                 //if open close the current and open a new form
                 Application.OpenForms.OfType<StudentList>().First().Close();
-                Form studentList = new StudentList(this, student, tb_search.Text);
+                Form studentList = new StudentList(this, student, studentName);
                 studentList.Tag = root;
                 studentList.Show();
             }
             else
             {
                 //open a new form if one does not exist
-                Form studentList = new StudentList(this, student, tb_search.Text);
+                Form studentList = new StudentList(this, student, studentName);
                 studentList.Tag = root;
                 studentList.Show();
             }
@@ -216,16 +237,19 @@ namespace ClassRobot
 
         private void tb_teacherName_TextChanged(object sender, EventArgs e)
         {
+            //alters the name in the grid view
             dgv_class.Rows[0].Cells[5].Value = tb_teacherName.Text;
         }
 
-        private void dgv_class_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
+        private void dgv_class_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            //changes the cell to edit mode when double clicked
             dgv_class.BeginEdit(true);
         }
 
         private void btn_open_Click(object sender, EventArgs e)
         {
+            //opens a window to select a new file to open
             OpenFileDialog openFile = new OpenFileDialog();
             openFile.InitialDirectory = @"C:\ClassRobot\";
             openFile.RestoreDirectory = true;
@@ -251,15 +275,12 @@ namespace ClassRobot
             {
                 //search for the student
                 string cellData = RandomAccessFile.FindRecord(Convert.ToInt32(tb_search.Text));
+                UpdateStudentList(cellData);
 
-                foreach (var item in root.Layout)
-                {
-                    if (item.CellData == cellData)
-                    {
-                        dgv_class.CurrentCell = dgv_class.Rows[item.Vertical].Cells[item.Horizontal];
-                        UpdateStudentList();
-                    }
-                }              
+                Layout layout = MainWindowController.FindStudent(root, cellData);
+
+                dgv_class.CurrentCell = dgv_class.Rows[layout.Vertical].Cells[layout.Horizontal];
+           
             }
             catch (Exception)
             {

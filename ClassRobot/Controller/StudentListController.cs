@@ -10,20 +10,21 @@ namespace ClassRobot.Controller
         public static List<Layout> GetAllStudents(RootObject root)
         {
             List<Layout> allStudents = new List<Layout>();
-
+            //create a list of all the cells that contain data
             foreach (var items in root.Layout)
             {
-                if (items.CellData != null && items.CellData.ToString() != "BKGRND_FILL")
+                if (items.CellData != null)
                 {
                     allStudents.Add(items);
                 }
             }
-
+            //sort them alphabetically
             return allStudents.OrderBy(x => x.CellData).ToList();
         }
 
         public static int SelectStudent(List<Layout> allStudents, string searchValue)
         {
+            //conduct a binary search to find the index of a student in the student list window
             return Array.BinarySearch(allStudents.ToArray(), new Layout() { CellData = searchValue });
         }
     }

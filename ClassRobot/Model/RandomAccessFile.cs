@@ -1,51 +1,52 @@
-﻿using System;
+﻿/*
+ *      Student Number: 451381461
+ *      Name:           Mitchell Stone
+ *      Date:           03/09/2018
+ *      Purpose:        Functions for writing to and searching in a random access file
+ *      Known Bugs:     nill
+ */
+
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Windows.Forms;
 
 namespace ClassRobot.Model
 {
     class RandomAccessFile
     {
-        private static int position = 0;
         private static string fileName = @"C:\ClassRobot\student.txt";
 
         public static void UpdateRafFile(List<Layout> layouts)
         {
-            List<Layout> tempList = new List<Layout>();
-
-            foreach (var item in layouts)
-            {
-                if (item.CellData != null || item.CellData != "")
-                {
-                    tempList.Add(item);
-                }
-            }
-
             try
             {
+                //create a new file each time so it is up to date with the latest data in the window
                 File.Create(fileName).Dispose();
 
-                FileStream stream = new FileStream(fileName, FileMode.Append, FileAccess.Write);
-
-                //create a binary writer
-                BinaryWriter binWriter = new BinaryWriter(stream);
-
-                for (int index = 1; index < tempList.Count; index++)
+                using (FileStream stream = new FileStream(fileName, FileMode.Append, FileAccess.Write))
+                using (BinaryWriter binWriter = new BinaryWriter(stream))
                 {
-                    Layout item = tempList[index];
+                    int index = 1;
 
-                    //use the size of the string to create the position
-                    stream.Position = index * item.RecSize;
+                    foreach (var item in layouts)
+                    {                   
+                        //write the data
+                        if (item.CellData != null)
+                        {
+                            //use the size of the string to create the position
+                            stream.Position = index * item.RecSize;
 
-                    //write the data
-                    binWriter.Write(item.CellData);
+                            binWriter.Write(item.CellData);
+
+                            index++;
+                        }
+                    }
+
+                    //close the connections
+                    binWriter.Close();
+                    stream.Close();
                 }
-
-                //close the connections
-                binWriter.Close();
-                stream.Close();
             }
             catch (Exception e)
             {
@@ -60,20 +61,23 @@ namespace ClassRobot.Model
         {
             Layout layout = new Layout();
             string name;
-            //open the file
+            
             try
             {
-                FileStream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                BinaryReader binReader = new BinaryReader(stream);
+                //open the file
+                using (FileStream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+                using (BinaryReader binReader = new BinaryReader(stream))
+                {
+                    //seek for the infromation in the indexed location
+                    stream.Seek(index * layout.RecSize, SeekOrigin.Begin);
+                    //return the data as a string
+                    name = binReader.ReadString().ToString();
+                    //close the connection
+                    stream.Close();
+                    binReader.Close();
 
-                stream.Seek(index * layout.RecSize, SeekOrigin.Begin);
-
-                name = binReader.ReadString().ToString();
-               
-                stream.Close();
-                binReader.Close();
-
-                return name;
+                    return name;
+                }
             }
             catch (Exception e)
             {
