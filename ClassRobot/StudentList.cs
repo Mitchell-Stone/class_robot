@@ -1,4 +1,12 @@
-﻿using ClassRobot.Controller;
+﻿/*
+ *      Student Number: 451381461
+ *      Name:           Mitchell Stone
+ *      Date:           03/09/2018
+ *      Purpose:        Logic fore displying the student list window
+ *      Known Bugs:     nill
+ */
+
+using ClassRobot.Controller;
 using ClassRobot.Model;
 using System;
 using System.Collections.Generic;

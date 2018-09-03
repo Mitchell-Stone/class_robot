@@ -289,7 +289,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "MainWindow";
-            this.Text = "Form1";
+            this.Text = "Class Room Robot";
             ((System.ComponentModel.ISupportInitialize)(this.dgv_class)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

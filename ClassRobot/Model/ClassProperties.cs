@@ -1,4 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿/*
+ *      Student Number: 451381461
+ *      Name:           Mitchell Stone
+ *      Date:           03/09/2018
+ *      Purpose:        All properties for the deserialized JSON objects
+ *      Known Bugs:     nill
+ */
+
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 

@@ -3,7 +3,7 @@
  *      Name:           Mitchell Stone
  *      Date:           03/09/2018
  *      Purpose:        Logic for displaying the data in the main window
- *      Known Bugs:     The RAF button does not highlight the student in the student list window (work around = search by student name first)
+ *      Known Bugs:     nill
  */
 
 using ClassRobot.Controller;
@@ -268,17 +268,18 @@ namespace ClassRobot
 
         private void btn_RAF_Click(object sender, EventArgs e)
         {
-            //update the random access file to the currently selected layout
+            //updates the random access file to the currently selected layout
             RandomAccessFile.UpdateRafFile(root.Layout);
 
             try
             {
                 //search for the student
                 string cellData = RandomAccessFile.FindRecord(Convert.ToInt32(tb_search.Text));
+                student = MainWindowController.FindStudent(root, cellData);
                 UpdateStudentList(cellData);
-
+                //gets all the information about the student
                 Layout layout = MainWindowController.FindStudent(root, cellData);
-
+                //highlight the cell of the student
                 dgv_class.CurrentCell = dgv_class.Rows[layout.Vertical].Cells[layout.Horizontal];
            
             }

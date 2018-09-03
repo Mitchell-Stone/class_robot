@@ -1,4 +1,12 @@
-﻿using ClassRobot.Model;
+﻿/*
+ *      Student Number: 451381461
+ *      Name:           Mitchell Stone
+ *      Date:           03/09/2018
+ *      Purpose:        The controller for the student list window that executes all the functions needed to collate the data
+ *      Known Bugs:     nill
+ */
+
+using ClassRobot.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -92,7 +92,6 @@ namespace ClassRobot.Controller
             {
                 layouts.Add(layout);
             }
-
             
             //sort the array in the order of the cell data
             Layout[] sortedArray = layouts.OrderBy(x => x.CellData).ToArray();
