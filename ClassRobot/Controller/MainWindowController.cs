@@ -14,6 +14,11 @@ namespace ClassRobot.Controller
             return Json.DeserializeFromFile();
         }
 
+        public static RootObject AccessDatabase(string fileName)
+        {
+            return Json.DeserializeFromFile(fileName);
+        }
+
         public static int GetHorizontalCount(List<Layout> layout)
         {
             return layout.Max(x => x.Horizontal) + 1;
@@ -24,7 +29,7 @@ namespace ClassRobot.Controller
             return layout.Max(x => x.Vertical) + 2;
         }
 
-        public static void SaveDataToFile(DataGridView dgv_class, RootObject root)
+        public static void SaveDataToFile(DataGridView dgv_class, RootObject root, DateTime date)
         {
             Layout layout;
 
@@ -39,7 +44,7 @@ namespace ClassRobot.Controller
                     {
                         //creates a new object for a cell that only contains a colour
                         layout = new Layout();
-                        layout.CellData = "BKGRND_FILL";
+                        layout.Colour = true;
                         layout.Horizontal = cell.ColumnIndex;
                         layout.Vertical = cell.RowIndex;
 
@@ -62,7 +67,7 @@ namespace ClassRobot.Controller
             root.Layout = layouts;
 
             //save the changes to file
-            Json.SerializeToFile(root);
+            Json.SerializeToFile(root, date);
         }
 
         public static Layout FindStudent(RootObject root, string cellData)

@@ -29,7 +29,10 @@ namespace ClassRobot.Model
         [JsonProperty("cell_data")]
         public string CellData { get; set; }
         [JsonProperty("colour")]
-        public string Colour { get; set; }
+        public bool Colour { get; set; }
+
+        //used for RAF
+        public int RecSize { get; set; } = 30;
 
         //this is used with IComparable to sort an array containing layout objects
         public int CompareTo(Layout other)

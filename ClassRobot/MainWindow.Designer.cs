@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -47,8 +47,8 @@
             this.tb_teacherName = new System.Windows.Forms.TextBox();
             this.tb_classId = new System.Windows.Forms.TextBox();
             this.tb_roomId = new System.Windows.Forms.TextBox();
-            this.dtp_date = new System.Windows.Forms.DateTimePicker();
-            this.btn_saveAs = new System.Windows.Forms.Button();
+            this.tb_date = new System.Windows.Forms.DateTimePicker();
+            this.btn_open = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_class)).BeginInit();
             this.SuspendLayout();
             // 
@@ -109,23 +109,23 @@
             this.dgv_class.AllowUserToResizeColumns = false;
             this.dgv_class.AllowUserToResizeRows = false;
             this.dgv_class.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_class.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_class.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgv_class.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_class.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_class.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgv_class.Location = new System.Drawing.Point(12, 94);
             this.dgv_class.MultiSelect = false;
             this.dgv_class.Name = "dgv_class";
@@ -139,7 +139,7 @@
             // btn_clear
             // 
             this.btn_clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_clear.Location = new System.Drawing.Point(156, 733);
+            this.btn_clear.Location = new System.Drawing.Point(222, 741);
             this.btn_clear.Name = "btn_clear";
             this.btn_clear.Size = new System.Drawing.Size(204, 45);
             this.btn_clear.TabIndex = 10;
@@ -150,7 +150,7 @@
             // btn_save
             // 
             this.btn_save.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_save.Location = new System.Drawing.Point(366, 733);
+            this.btn_save.Location = new System.Drawing.Point(432, 741);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(204, 45);
             this.btn_save.TabIndex = 11;
@@ -161,7 +161,7 @@
             // btn_sort
             // 
             this.btn_sort.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_sort.Location = new System.Drawing.Point(156, 784);
+            this.btn_sort.Location = new System.Drawing.Point(12, 741);
             this.btn_sort.Name = "btn_sort";
             this.btn_sort.Size = new System.Drawing.Size(204, 45);
             this.btn_sort.TabIndex = 12;
@@ -172,7 +172,7 @@
             // btn_find
             // 
             this.btn_find.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_find.Location = new System.Drawing.Point(714, 784);
+            this.btn_find.Location = new System.Drawing.Point(962, 787);
             this.btn_find.Name = "btn_find";
             this.btn_find.Size = new System.Drawing.Size(204, 45);
             this.btn_find.TabIndex = 15;
@@ -183,17 +183,18 @@
             // btn_RAF
             // 
             this.btn_RAF.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_RAF.Location = new System.Drawing.Point(1245, 769);
+            this.btn_RAF.Location = new System.Drawing.Point(1172, 787);
             this.btn_RAF.Name = "btn_RAF";
             this.btn_RAF.Size = new System.Drawing.Size(204, 45);
             this.btn_RAF.TabIndex = 16;
             this.btn_RAF.Text = "RAF";
             this.btn_RAF.UseVisualStyleBackColor = true;
+            this.btn_RAF.Click += new System.EventHandler(this.btn_RAF_Click);
             // 
             // btn_exit
             // 
             this.btn_exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_exit.Location = new System.Drawing.Point(1455, 769);
+            this.btn_exit.Location = new System.Drawing.Point(1455, 741);
             this.btn_exit.Name = "btn_exit";
             this.btn_exit.Size = new System.Drawing.Size(204, 45);
             this.btn_exit.TabIndex = 17;
@@ -205,7 +206,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(674, 744);
+            this.label5.Location = new System.Drawing.Point(1002, 749);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(95, 29);
             this.label5.TabIndex = 13;
@@ -214,7 +215,7 @@
             // tb_search
             // 
             this.tb_search.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_search.Location = new System.Drawing.Point(761, 741);
+            this.tb_search.Location = new System.Drawing.Point(1089, 746);
             this.tb_search.Name = "tb_search";
             this.tb_search.Size = new System.Drawing.Size(200, 35);
             this.tb_search.TabIndex = 18;
@@ -244,23 +245,24 @@
             this.tb_roomId.Size = new System.Drawing.Size(129, 35);
             this.tb_roomId.TabIndex = 21;
             // 
-            // dtp_date
+            // tb_date
             // 
-            this.dtp_date.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtp_date.Location = new System.Drawing.Point(882, 43);
-            this.dtp_date.Name = "dtp_date";
-            this.dtp_date.Size = new System.Drawing.Size(405, 35);
-            this.dtp_date.TabIndex = 23;
+            this.tb_date.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_date.Location = new System.Drawing.Point(882, 43);
+            this.tb_date.Name = "tb_date";
+            this.tb_date.Size = new System.Drawing.Size(405, 35);
+            this.tb_date.TabIndex = 23;
             // 
-            // btn_saveAs
+            // btn_open
             // 
-            this.btn_saveAs.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_saveAs.Location = new System.Drawing.Point(366, 784);
-            this.btn_saveAs.Name = "btn_saveAs";
-            this.btn_saveAs.Size = new System.Drawing.Size(204, 45);
-            this.btn_saveAs.TabIndex = 24;
-            this.btn_saveAs.Text = "Save As";
-            this.btn_saveAs.UseVisualStyleBackColor = true;
+            this.btn_open.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_open.Location = new System.Drawing.Point(642, 742);
+            this.btn_open.Name = "btn_open";
+            this.btn_open.Size = new System.Drawing.Size(204, 45);
+            this.btn_open.TabIndex = 24;
+            this.btn_open.Text = "Open";
+            this.btn_open.UseVisualStyleBackColor = true;
+            this.btn_open.Click += new System.EventHandler(this.btn_open_Click);
             // 
             // MainWindow
             // 
@@ -268,8 +270,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1675, 844);
-            this.Controls.Add(this.btn_saveAs);
-            this.Controls.Add(this.dtp_date);
+            this.Controls.Add(this.btn_open);
+            this.Controls.Add(this.tb_date);
             this.Controls.Add(this.tb_roomId);
             this.Controls.Add(this.tb_classId);
             this.Controls.Add(this.tb_teacherName);
@@ -313,8 +315,8 @@
         private System.Windows.Forms.TextBox tb_teacherName;
         private System.Windows.Forms.TextBox tb_classId;
         private System.Windows.Forms.TextBox tb_roomId;
-        private System.Windows.Forms.DateTimePicker dtp_date;
-        private System.Windows.Forms.Button btn_saveAs;
+        private System.Windows.Forms.DateTimePicker tb_date;
+        private System.Windows.Forms.Button btn_open;
     }
 }
 

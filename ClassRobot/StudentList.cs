@@ -23,7 +23,6 @@ namespace ClassRobot
             InitializeComponent();
             formCall = callingCall;
         }
-
         
         public StudentList(MainWindow callingCall, Layout studentDetails, string searchValue)
         {

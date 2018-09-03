@@ -21,11 +21,12 @@ namespace ClassRobot
 
             root = MainWindowController.AccessDatabase();
 
-            BuildClassTabs();   
+            BuildClassTable();   
         }
 
-        private void BuildClassTabs()
+        private void BuildClassTable()
         {
+            dgv_class.ColumnCount = 0;
             int columnCount = MainWindowController.GetHorizontalCount(root.Layout);
             int rowCount = MainWindowController.GetVerticalCount(root.Layout);
 
@@ -59,7 +60,7 @@ namespace ClassRobot
             tb_teacherName.Text = root.Teacher;
             tb_classId.Text = root.ClassId;
             tb_roomId.Text = root.Room;
-            dtp_date.Value = DateTime.Parse(root.Date);
+            tb_date.Value = DateTime.Parse(root.Date);
         }
 
         private void PopulateView(List<Layout> layout)
@@ -68,7 +69,7 @@ namespace ClassRobot
             {
                 var row = dgv_class.Rows[grid.Vertical];
 
-                if (grid.CellData != "BKGRND_FILL")
+                if (grid.Colour != true)
                 {
                     row.Cells[grid.Horizontal.ToString()].Value = grid.CellData;
                 }
@@ -89,8 +90,9 @@ namespace ClassRobot
             root.Teacher = tb_teacherName.Text;
             root.ClassId = tb_classId.Text;
             root.Room = tb_roomId.Text;
-            root.Date = dtp_date.Value.ToString("yyyy-MM-dd");
-            MainWindowController.SaveDataToFile(dgv_class, root);
+            root.Date = tb_date.Value.ToString("yyyy-MM-dd");
+            DateTime date = DateTime.Parse(tb_date.Text);
+            MainWindowController.SaveDataToFile(dgv_class, root, date);
         }
 
         private void dgv_class_MouseClick(object sender, MouseEventArgs e)
@@ -220,6 +222,59 @@ namespace ClassRobot
         private void dgv_class_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
             dgv_class.BeginEdit(true);
+        }
+
+        private void btn_open_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.InitialDirectory = @"C:\ClassRobot\";
+            openFile.RestoreDirectory = true;
+            openFile.Filter = "json files (*.json)|*.json";
+            openFile.Title = "Select Class File";
+            openFile.Multiselect = false;
+
+            if (openFile.ShowDialog() == DialogResult.OK)
+            {
+                string location = openFile.FileName;
+                root = null;
+                root = MainWindowController.AccessDatabase(location);
+                BuildClassTable();
+            }
+        }
+
+        private void btn_RAF_Click(object sender, EventArgs e)
+        {
+            //update the random access file to the currently selected layout
+            RandomAccessFile.UpdateRafFile(root.Layout);
+
+            try
+            {
+                //search for the student
+                string cellData = RandomAccessFile.FindRecord(Convert.ToInt32(tb_search.Text));
+
+                foreach (var item in root.Layout)
+                {
+                    if (item.CellData == cellData)
+                    {
+                        dgv_class.CurrentCell = dgv_class.Rows[item.Vertical].Cells[item.Horizontal];
+                        UpdateStudentList();
+                    }
+                }              
+            }
+            catch (Exception)
+            {
+                if (string.IsNullOrWhiteSpace(tb_search.Text))
+                {
+                    MessageBox.Show("Please enter a record number and try again.", "Warning",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    //name has to match and if not show message
+                    MessageBox.Show("There is no student at that record number, please try again.", "Warning",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
         }
     }
 }
