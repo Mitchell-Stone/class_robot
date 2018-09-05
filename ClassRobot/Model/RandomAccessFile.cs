@@ -22,7 +22,7 @@ namespace ClassRobot.Model
     class RandomAccessFile
     {
         /// <summary>   Filename of the file. </summary>
-        private static string fileName = @"C:\ClassRobot\student.txt";
+        private static string fileName = @"C:\ClassRobot\student.dat";
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         /// <summary>   Updates the raf file described by layouts. </summary>

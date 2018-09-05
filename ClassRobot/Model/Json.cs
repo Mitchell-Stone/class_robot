@@ -36,13 +36,15 @@ namespace ClassRobot.Model
         public static RootObject DeserializeFromFile()
         {
             RootObject classes = new RootObject();
-            if (!File.Exists(directory))
+
+            string fileName = "default_class_details.json";
+            string defaultDirectory = Path.Combine(directory, fileName);
+
+            if (!File.Exists(defaultDirectory))
             {
                 Directory.CreateDirectory(directory);
                 //creates a file if one does not exist and fills it with example information
                 string[] lines = File.ReadAllLines(@"..\DefaultJson.json");
-
-                string fileName = $"default_class_details.json";
 
                 using (StreamWriter writer = new StreamWriter(directory + fileName))
                 {

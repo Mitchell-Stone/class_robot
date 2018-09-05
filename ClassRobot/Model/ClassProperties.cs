@@ -121,7 +121,7 @@ namespace ClassRobot.Model
         ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         [JsonProperty("record_size")]
-        public int RecSize { get; set; } = 30;
+        public int RecSize { get; set; } = 10;
 
         //this is used with IComparable to sort an array containing layout objects
 
