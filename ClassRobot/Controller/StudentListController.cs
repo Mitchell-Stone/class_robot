@@ -13,8 +13,24 @@ using System.Linq;
 
 namespace ClassRobot.Controller
 {
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>   A controller for handling student lists. </summary>
+    ///
+    /// <remarks>   , 6/09/2018. </remarks>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
     class StudentListController
     {
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Gets all students. </summary>
+        ///
+        /// <remarks>   , 6/09/2018. </remarks>
+        ///
+        /// <param name="root"> The root. </param>
+        ///
+        /// <returns>   all students. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         public static List<Layout> GetAllStudents(RootObject root)
         {
             List<Layout> allStudents = new List<Layout>();
@@ -29,6 +45,17 @@ namespace ClassRobot.Controller
             //sort them alphabetically
             return allStudents.OrderBy(x => x.CellData).ToList();
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Select student. </summary>
+        ///
+        /// <remarks>   , 6/09/2018. </remarks>
+        ///
+        /// <param name="allStudents">  all students. </param>
+        /// <param name="searchValue">  The search value. </param>
+        ///
+        /// <returns>   An int. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public static int SelectStudent(List<Layout> allStudents, string searchValue)
         {

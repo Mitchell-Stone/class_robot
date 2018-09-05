@@ -15,13 +15,37 @@ using System.Windows.Forms;
 
 namespace ClassRobot.Controller
 {
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>   A controller for handling main windows. </summary>
+    ///
+    /// <remarks>   , 6/09/2018. </remarks>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
     class MainWindowController
     {
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Access database. </summary>
+        ///
+        /// <remarks>   , 6/09/2018. </remarks>
+        ///
+        /// <returns>   A RootObject. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         public static RootObject AccessDatabase()
         {
             //deserializes the json infomation
             return Json.DeserializeFromFile();
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Access database. </summary>
+        ///
+        /// <remarks>   , 6/09/2018. </remarks>
+        ///
+        /// <param name="fileName"> Filename of the file. </param>
+        ///
+        /// <returns>   A RootObject. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public static RootObject AccessDatabase(string fileName)
         {
@@ -29,17 +53,47 @@ namespace ClassRobot.Controller
             return Json.DeserializeFromFile(fileName);
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Gets horizontal count. </summary>
+        ///
+        /// <remarks>   , 6/09/2018. </remarks>
+        ///
+        /// <param name="layout">   The layout. </param>
+        ///
+        /// <returns>   The horizontal count. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         public static int GetHorizontalCount(List<Layout> layout)
         {
             //looks for the highest horizontal value and adds 1 to make room
             return layout.Max(x => x.Horizontal) + 1;
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Gets vertical count. </summary>
+        ///
+        /// <remarks>   , 6/09/2018. </remarks>
+        ///
+        /// <param name="layout">   The layout. </param>
+        ///
+        /// <returns>   The vertical count. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         public static int GetVerticalCount(List<Layout> layout)
         {
             //looks for the highest vertical value and adds 2 to make room
             return layout.Max(x => x.Vertical) + 2;
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Saves a data to file. </summary>
+        ///
+        /// <remarks>   , 6/09/2018. </remarks>
+        ///
+        /// <param name="dgv_class">    The dgv class. </param>
+        /// <param name="root">         The root. </param>
+        /// <param name="date">         The date Date/Time. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public static void SaveDataToFile(DataGridView dgv_class, RootObject root, DateTime date)
         {
@@ -82,6 +136,17 @@ namespace ClassRobot.Controller
             Json.SerializeToFile(root, date);
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Searches for the first student. </summary>
+        ///
+        /// <remarks>   , 6/09/2018. </remarks>
+        ///
+        /// <param name="root">     The root. </param>
+        /// <param name="cellData"> Information describing the cell. </param>
+        ///
+        /// <returns>   The found student. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
         public static Layout FindStudent(RootObject root, string cellData)
         {
             List<Layout> layouts = new List<Layout>();
@@ -112,6 +177,16 @@ namespace ClassRobot.Controller
                 return null;
             }
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Clears all students described by dgv_class. </summary>
+        ///
+        /// <remarks>   , 6/09/2018. </remarks>
+        ///
+        /// <param name="dgv_class">    The dgv class. </param>
+        ///
+        /// <returns>   A DataGridView. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public static DataGridView ClearAllStudents(DataGridView dgv_class)
         {

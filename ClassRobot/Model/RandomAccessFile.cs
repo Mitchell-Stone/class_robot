@@ -13,9 +13,24 @@ using System.Windows.Forms;
 
 namespace ClassRobot.Model
 {
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// <summary>   A random access file. </summary>
+    ///
+    /// <remarks>   , 6/09/2018. </remarks>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
     class RandomAccessFile
     {
+        /// <summary>   Filename of the file. </summary>
         private static string fileName = @"C:\ClassRobot\student.txt";
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Updates the raf file described by layouts. </summary>
+        ///
+        /// <remarks>   , 6/09/2018. </remarks>
+        ///
+        /// <param name="layouts">  The layouts. </param>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public static void UpdateRafFile(List<Layout> layouts)
         {
@@ -56,6 +71,16 @@ namespace ClassRobot.Model
                 Console.WriteLine(e.Message);
             }
         }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>   Searches for the first record. </summary>
+        ///
+        /// <remarks>   , 6/09/2018. </remarks>
+        ///
+        /// <param name="index">    Zero-based index of the. </param>
+        ///
+        /// <returns>   The found record. </returns>
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
 
         public static string FindRecord(int index)
         {
